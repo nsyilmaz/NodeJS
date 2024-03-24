@@ -1,7 +1,8 @@
 version: "3.8"
 services:
-  web:
+  cli:
     build: .
+    container_name: "app-cli"
   #  ports:
   #    - "5000:5000"
   #  depends_on:
