@@ -8,3 +8,10 @@ services:
   #  depends_on:
   #    - mysql
   #  restart: on-failure
+    networks:
+      - "internalnet"
+
+
+networks:
+  internalnet:
+    driver: bridge

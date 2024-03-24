@@ -4,18 +4,32 @@ services:
     image: mysql:8.0
     container_name: "mysql-db"
     restart: always
+    #env_file: ./docker.env
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     command: --lower_case_table_names=1
+    
     ports:
       - "3306:3306"
-    expose:
-      - "3306"
     volumes:
       - ./data:/var/lib/mysql
+    networks:
+      - "internalnet"
+
+
+  web:
+    container_name: app-web
+    build: .
+    #image: payatu/vuln_nodejs_app
+    ports:
+      - 5000:5000
+    expose:
+      - 5000
+    depends_on:
+      - mysql-db
     networks:
       - "internalnet"
 
