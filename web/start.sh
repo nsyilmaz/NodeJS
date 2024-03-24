@@ -2,7 +2,7 @@
 
 
 #docker-compose --env-file docker.env  build 
-docker-compose --env-file docker.env  up -d
+docker-compose --env-file docker.env   up --build -d
 
 docker ps -a
 
